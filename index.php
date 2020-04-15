@@ -1,5 +1,9 @@
 <?php
-$ip = explode('.', $_SERVER['REMOTE_ADDR']);
+
+$ip = isset($_SERVER['HTTP_X_FORWARDED_FOR'])
+    ? $_SERVER['HTTP_X_FORWARDED_FOR']
+    : $_SERVER['REMOTE_ADDR'];
+$ip_parts = explode('.', $ip);
 
 $parts = [
   date("Y-m-d H:i:s"),
@@ -11,4 +15,4 @@ $parts = [
   "\n"
 ];
 file_put_contents('stats.log', join("\t", $parts), FILE_APPEND);
-
+print_r($parts);
