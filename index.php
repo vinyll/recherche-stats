@@ -15,4 +15,3 @@ $parts = [
   "\n"
 ];
 file_put_contents('stats.log', join("\t", $parts), FILE_APPEND);
-print_r($parts);
